@@ -11,9 +11,11 @@ import random
 NUMBER_OF_PEOPLE_MIN = 3
 NUMBER_OF_PEOPLE_MAX = 9
 
+INTERVAL_MIN = 5
+INTERVAL_MAX = 7
+
 TIME_FOR_WASH = 7
 PARTY_TIME = 5
-INTERVAL = 5
 # потом зарандомить
 WORK_TIME = 180
 NUMBER_OF_CUPS = 40
@@ -25,6 +27,7 @@ TEXTS_FOR_GRAPH = ['Количество чистых чашек',
 def main():
     res_array_number_of_washing_cups = [0]
     res_array_number_of_clear_cups = [NUMBER_OF_CUPS]
+    res_array_time = [0]
 
     array_of_washing_cups_time = []
 
@@ -52,26 +55,22 @@ def main():
         number_of_clear_cups -= number_of_people_rand
         number_of_washing_cups += number_of_people_rand
 
-        time += INTERVAL
+        time += random.randrange(INTERVAL_MIN, INTERVAL_MAX)
+        res_array_time.append(time)
 
         array_of_washing_cups_time.append({'time': time, 'number': number_of_people_rand})
 
-    print_graph(res_array_number_of_clear_cups, res_array_number_of_washing_cups)
+    print_graph(res_array_time, res_array_number_of_clear_cups, res_array_number_of_washing_cups)
 
 
-def print_graph(number_of_clear_cups, number_of_washing_cups):
+def print_graph(res_array_time, number_of_clear_cups, number_of_washing_cups):
     fig, ax = plt.subplots(1, 1, figsize=(15, 5), dpi=200)
 
-    time_array = []
+    # логирование каждого момента времени
+    test(number_of_clear_cups, res_array_time, number_of_washing_cups)
 
-    for i in range(len(number_of_clear_cups)):
-        time_array.append(INTERVAL * i)
-        print(INTERVAL * i)
-        print("Чистые {}".format(number_of_clear_cups[i]))
-        print("Моющиеся {}\n".format(number_of_washing_cups[i]))
-
-    plt.plot(time_array, number_of_clear_cups, color="green")
-    plt.plot(time_array, number_of_washing_cups, color="yellow")
+    plt.plot(res_array_time, number_of_clear_cups, color="green")
+    plt.plot(res_array_time, number_of_washing_cups, color="yellow")
 
     ax.legend(TEXTS_FOR_GRAPH, loc='best')
 
@@ -79,6 +78,13 @@ def print_graph(number_of_clear_cups, number_of_washing_cups):
     ax.set_ylabel('Количество чашек')
 
     plt.show()
+
+
+def test(number_of_clear_cups, res_array_time, number_of_washing_cups):
+    for i in range(len(number_of_clear_cups)):
+        print(res_array_time[i])
+        print("Чистые {}".format(number_of_clear_cups[i]))
+        print("Моющиеся {}\n".format(number_of_washing_cups[i]))
 
 
 if __name__ == '__main__':
