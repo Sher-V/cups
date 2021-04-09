@@ -66,11 +66,13 @@ def main():
 def print_graph(res_array_time, number_of_clear_cups, number_of_washing_cups):
     fig, ax = plt.subplots(1, 1, figsize=(15, 5), dpi=200)
 
+    ax.grid()
+
     # логирование каждого момента времени
     test(number_of_clear_cups, res_array_time, number_of_washing_cups)
 
     plt.plot(res_array_time, number_of_clear_cups, color="green")
-    plt.plot(res_array_time, number_of_washing_cups, color="yellow")
+    plt.plot(res_array_time, number_of_washing_cups, color="blue")
 
     ax.legend(TEXTS_FOR_GRAPH, loc='best')
 
