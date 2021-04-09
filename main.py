@@ -8,16 +8,21 @@
 import matplotlib.pyplot as plt
 import random
 
-NUMBER_OF_PEOPLE_MIN = 3
-NUMBER_OF_PEOPLE_MAX = 9
+# минимальное и максимальное количество людей
+NUMBER_OF_PEOPLE_MIN = 2
+NUMBER_OF_PEOPLE_MAX = 15
 
+# минимальный и максимальный интервал между приходом людей
 INTERVAL_MIN = 5
 INTERVAL_MAX = 7
 
+# время мойки
 TIME_FOR_WASH = 7
-PARTY_TIME = 5
-# потом зарандомить
+
+# время работы
 WORK_TIME = 180
+
+# количество чашек
 NUMBER_OF_CUPS = 40
 
 TEXTS_FOR_GRAPH = ['Количество чистых чашек',
@@ -69,7 +74,7 @@ def print_graph(res_array_time, number_of_clear_cups, number_of_washing_cups):
     ax.grid()
 
     # логирование каждого момента времени
-    test(number_of_clear_cups, res_array_time, number_of_washing_cups)
+    log(number_of_clear_cups, res_array_time, number_of_washing_cups)
 
     plt.plot(res_array_time, number_of_clear_cups, color="green")
     plt.plot(res_array_time, number_of_washing_cups, color="blue")
@@ -82,7 +87,7 @@ def print_graph(res_array_time, number_of_clear_cups, number_of_washing_cups):
     plt.show()
 
 
-def test(number_of_clear_cups, res_array_time, number_of_washing_cups):
+def log(number_of_clear_cups, res_array_time, number_of_washing_cups):
     for i in range(len(number_of_clear_cups)):
         print(res_array_time[i])
         print("Чистые {}".format(number_of_clear_cups[i]))
